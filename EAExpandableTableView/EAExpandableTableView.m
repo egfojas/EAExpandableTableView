@@ -8,6 +8,13 @@
 
 #import "EAExpandableTableView.h"
 
+@interface EAExpandableTableView()
+
+@property(nonatomic, strong) NSMutableArray *currentItemsInTable;
+@property(nonatomic, strong) NSMutableArray *originaItemsInTable;
+
+@end
+
 @implementation EAExpandableTableView
 
 - (id)initWithFrame:(CGRect)frame
