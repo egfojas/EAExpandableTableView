@@ -19,6 +19,15 @@
     return self;
 }
 
+- (void)initializeTableView
+{
+    [self setDataSource:self];
+    [self setDelegate:self];
+    self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableFooterView = footer;
+}
+
 #pragma mark - UITableView Delegate Methods
 
 
