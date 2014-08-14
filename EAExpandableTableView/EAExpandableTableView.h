@@ -24,4 +24,7 @@
 
 @interface EAExpandableTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
+@property(nonatomic, weak) id<EAExpandableTableViewDelegate> expandableTableViewDelegate;
+@property(nonatomic, weak) id<EAExpandableTableViewDataSource> expandableTableViewDatasource;
+
 @end
