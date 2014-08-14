@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EAExpandableTableViewDataSource <NSObject>
+
+@required
+- (NSArray *)dataForTableView;
+
+@optional
+- (NSInteger)numberOfSections;
+
+@end
+
+@protocol EAExpandableTableViewDelegate <NSObject>
+
+@end
+
 @interface EAExpandableTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 @end
