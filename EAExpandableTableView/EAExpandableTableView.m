@@ -43,6 +43,12 @@
 
 - (void)initializeTableView
 {
+    self.currentItemsInTable = [[NSMutableArray alloc] init];
+    for (int i=0; i<[self numberOfSectionsInTableView:self]; i++) {
+        [self.currentItemsInTable insertObject:[[self itemsForTableSection:i] mutableCopy] atIndex:i];
+    }
+    self.originaItemsInTable = self.currentItemsInTable;
+    
     [self setDataSource:self];
     [self setDelegate:self];
     self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -65,7 +71,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if ([self.expandableTableViewDatasource respondsToSelector:@selector(numberOfSections)]) {
+        return [self.expandableTableViewDatasource numberOfSections];
+    }
+    
+    return [[self.expandableTableViewDatasource dataForTableView] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
