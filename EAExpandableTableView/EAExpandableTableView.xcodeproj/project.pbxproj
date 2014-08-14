@@ -20,6 +20,7 @@
 		C9018A02199C575D00F3C979 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9018A00199C575D00F3C979 /* InfoPlist.strings */; };
 		C9018A04199C575D00F3C979 /* EAExpandableTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9018A03199C575D00F3C979 /* EAExpandableTableViewTests.m */; };
 		C9018A0F199C57A500F3C979 /* EAExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9018A0E199C57A500F3C979 /* EAExpandableTableView.m */; };
+		C9018A12199C872500F3C979 /* EADemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9018A11199C872500F3C979 /* EADemoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		C9018A03199C575D00F3C979 /* EAExpandableTableViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EAExpandableTableViewTests.m; sourceTree = "<group>"; };
 		C9018A0D199C57A500F3C979 /* EAExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAExpandableTableView.h; sourceTree = SOURCE_ROOT; };
 		C9018A0E199C57A500F3C979 /* EAExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAExpandableTableView.m; sourceTree = SOURCE_ROOT; };
+		C9018A10199C872500F3C979 /* EADemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EADemoViewController.h; sourceTree = "<group>"; };
+		C9018A11199C872500F3C979 /* EADemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EADemoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 			children = (
 				C90189ED199C575D00F3C979 /* EAAppDelegate.h */,
 				C90189EE199C575D00F3C979 /* EAAppDelegate.m */,
+				C9018A10199C872500F3C979 /* EADemoViewController.h */,
+				C9018A11199C872500F3C979 /* EADemoViewController.m */,
 				C9018A0D199C57A500F3C979 /* EAExpandableTableView.h */,
 				C9018A0E199C57A500F3C979 /* EAExpandableTableView.m */,
 				C90189F0199C575D00F3C979 /* Images.xcassets */,
@@ -248,6 +253,7 @@
 				C9018A0F199C57A500F3C979 /* EAExpandableTableView.m in Sources */,
 				C90189EF199C575D00F3C979 /* EAAppDelegate.m in Sources */,
 				C90189EB199C575D00F3C979 /* main.m in Sources */,
+				C9018A12199C872500F3C979 /* EADemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
