@@ -9,7 +9,9 @@
 #import "EADemoViewController.h"
 
 @interface EADemoViewController ()
+
 @property (nonatomic, strong) EAExpandableTableView *tableView;
+
 @end
 
 @implementation EADemoViewController

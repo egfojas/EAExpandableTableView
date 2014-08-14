@@ -15,14 +15,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView subItemCellForIndex:(NSInteger)subItemIndex withItemIndex:(NSInteger)itemIndex inSection:(NSInteger)sectionIndex;
 - (UITableViewCell *)tableView:(UITableView *)tableView itemCellForIndex:(NSInteger)itemIndex inSection:(NSInteger)sectionIndex;
 
-
-
 @optional
 - (NSInteger)numberOfSections;
 
 @end
 
 @protocol EAExpandableTableViewDelegate <NSObject>
+
+@optional
+- (void *)tableView:tableView didSelectSubItemAtIndex:(NSInteger)subitemIndex itemIndex:(NSInteger)parentIndex inSection:(NSInteger)section;
+- (void *)tableView:tableView didSelectItemIndexAtIndex:(NSInteger)index inSection:(NSInteger)section;
 
 @end
 

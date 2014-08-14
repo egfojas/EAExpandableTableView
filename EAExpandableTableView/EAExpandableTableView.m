@@ -112,16 +112,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self isCellAtIndexPathASubItem:indexPath]) {
-        if ([self.expandableTableViewDelegate respondsToSelector:@selector(tableView:didSelectCellAtChildIndex:withInParentCellIndex:inSection:)]) {
+        if ([self.expandableTableViewDelegate respondsToSelector:@selector(tableView:didSelectSubItemAtIndex:itemIndex:inSection:)]) {
             id subitem = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
             do {
                 indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
             } while ([self isCellAtIndexPathASubItem:indexPath]);
-            NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-            NSInteger parentIndex= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
-            NSInteger subitemIndex = [[dic objectForKey:@"subitems"] indexOfObjectIdenticalTo:subitem];
             
-            //[self.expandableTableViewDelegate tableView:tableView didSelectCellAtChildIndex:subitemIndex withInParentCellIndex:parentIndex inSection:indexPath.section];
+            NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            NSInteger itemIndex= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
+            NSInteger subItemIndex = [[dic objectForKey:@"subitems"] indexOfObjectIdenticalTo:subitem];
+            [self.expandableTableViewDelegate tableView:self didSelectSubItemAtIndex:subItemIndex itemIndex:itemIndex inSection:indexPath.section];
         }
     }
     else {
@@ -144,12 +144,11 @@
             [self expandSubitemsInItemIndexPath:indexPath];
         }
         
-        if ([self.expandableTableViewDelegate respondsToSelector:@selector(tableView:didSelectParentCellAtIndex:inSection:)]) {
+        if ([self.expandableTableViewDelegate respondsToSelector:@selector(tableView:didSelectItemIndexAtIndex:inSection:)]) {
             NSInteger index = 0;
             NSArray *itemsInSection = [self.originaItemsInTable objectAtIndex:indexPath.section];
             index = [itemsInSection indexOfObjectIdenticalTo:dic];
-            
-            //[self.expandableTableViewDelegate tableView:tableView didSelectParentCellAtIndex:index inSection:indexPath.section];
+            [self.expandableTableViewDelegate tableView:self didSelectItemIndexAtIndex:index inSection:indexPath.section];
         }
     }
 }
