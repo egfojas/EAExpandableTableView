@@ -24,15 +24,21 @@
     return self;
 }
 
+- (void)loadView
+{
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+    self.view.backgroundColor = [UIColor darkGrayColor];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView = [[EAExpandableTableView alloc] initWithFrame:self.view.frame];
     self.tableView.expandableTableViewDatasource = self;
     self.tableView.expandableTableViewDelegate = self;
+    [self.view addSubview:self.tableView];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableCell"];
-    // Do any additional setup after loading the view.
 }
 
 - (NSInteger)numberOfSections
