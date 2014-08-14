@@ -109,6 +109,50 @@
 
 #pragma mark - UITableView Delegate Methods
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self isCellAtIndexPathASubItem:indexPath]) {
+        if ([self.expandableTableViewDelegate respondsToSelector:@selector(tableView:didSelectCellAtChildIndex:withInParentCellIndex:inSection:)]) {
+            id subitem = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            do {
+                indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
+            } while ([self isCellAtIndexPathASubItem:indexPath]);
+            NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            NSInteger parentIndex= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
+            NSInteger subitemIndex = [[dic objectForKey:@"subitems"] indexOfObjectIdenticalTo:subitem];
+            
+            //[self.expandableTableViewDelegate tableView:tableView didSelectCellAtChildIndex:subitemIndex withInParentCellIndex:parentIndex inSection:indexPath.section];
+        }
+    }
+    else {
+        NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        NSArray *arr=[dic valueForKey:@"subitems"];
+        BOOL isTableExpanded=NO;
+        
+        for (NSDictionary *subitems in arr ) {
+            NSInteger index= [[self.currentItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:subitems];
+            isTableExpanded = (index > 0 && index != NSIntegerMax);
+            if (isTableExpanded) {
+                break;
+            }
+        }
+        
+        if (isTableExpanded) {
+            [self collapseSubitemsInItemIndexPath:indexPath];
+        }
+        else {
+            [self expandSubitemsInItemIndexPath:indexPath];
+        }
+        
+        if ([self.expandableTableViewDelegate respondsToSelector:@selector(tableView:didSelectParentCellAtIndex:inSection:)]) {
+            NSInteger index = 0;
+            NSArray *itemsInSection = [self.originaItemsInTable objectAtIndex:indexPath.section];
+            index = [itemsInSection indexOfObjectIdenticalTo:dic];
+            
+            //[self.expandableTableViewDelegate tableView:tableView didSelectParentCellAtIndex:index inSection:indexPath.section];
+        }
+    }
+}
 
 #pragma mark - UITableView Datasource Methods
 
@@ -130,12 +174,15 @@
 {
     if ([self isCellAtIndexPathASubItem:indexPath]) {
         id subitem = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
         do {
             indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
         } while ([self isCellAtIndexPathASubItem:indexPath]);
+        
         NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         NSInteger itemIndex= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
         NSInteger subItemIndex = [[dic objectForKey:@"subitems"] indexOfObjectIdenticalTo:subitem];
+        
         return [self.expandableTableViewDatasource tableView:self subItemCellForIndex:subItemIndex withItemIndex:itemIndex inSection:indexPath.section];
     }
     else {
@@ -143,7 +190,6 @@
         NSInteger index= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
         return [self.expandableTableViewDatasource tableView:self itemCellForIndex:index inSection:indexPath.section];
     }
-    
 }
 
 @end
