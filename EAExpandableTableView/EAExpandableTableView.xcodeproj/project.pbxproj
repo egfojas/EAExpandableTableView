@@ -19,6 +19,7 @@
 		C90189FA199C575D00F3C979 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90189E2199C575D00F3C979 /* UIKit.framework */; };
 		C9018A02199C575D00F3C979 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9018A00199C575D00F3C979 /* InfoPlist.strings */; };
 		C9018A04199C575D00F3C979 /* EAExpandableTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9018A03199C575D00F3C979 /* EAExpandableTableViewTests.m */; };
+		C9018A0F199C57A500F3C979 /* EAExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9018A0E199C57A500F3C979 /* EAExpandableTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		C90189FF199C575D00F3C979 /* EAExpandableTableViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EAExpandableTableViewTests-Info.plist"; sourceTree = "<group>"; };
 		C9018A01199C575D00F3C979 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9018A03199C575D00F3C979 /* EAExpandableTableViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EAExpandableTableViewTests.m; sourceTree = "<group>"; };
+		C9018A0D199C57A500F3C979 /* EAExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAExpandableTableView.h; sourceTree = SOURCE_ROOT; };
+		C9018A0E199C57A500F3C979 /* EAExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAExpandableTableView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 			children = (
 				C90189ED199C575D00F3C979 /* EAAppDelegate.h */,
 				C90189EE199C575D00F3C979 /* EAAppDelegate.m */,
+				C9018A0D199C57A500F3C979 /* EAExpandableTableView.h */,
+				C9018A0E199C57A500F3C979 /* EAExpandableTableView.m */,
 				C90189F0199C575D00F3C979 /* Images.xcassets */,
 				C90189E5199C575D00F3C979 /* Supporting Files */,
 			);
@@ -240,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9018A0F199C57A500F3C979 /* EAExpandableTableView.m in Sources */,
 				C90189EF199C575D00F3C979 /* EAAppDelegate.m in Sources */,
 				C90189EB199C575D00F3C979 /* main.m in Sources */,
 			);
