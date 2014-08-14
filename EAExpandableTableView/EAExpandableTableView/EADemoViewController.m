@@ -11,7 +11,7 @@
 @interface EADemoViewController ()
 
 @property (nonatomic, strong) EAExpandableTableView *tableView;
-
+@property (nonatomic, strong) NSArray *dataForTable;
 @end
 
 @implementation EADemoViewController
@@ -20,8 +20,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        
+        self.dataForTable = @[@[@{@"title": @"main1-1", @"subitems":@[@"1-1-1", @"1-1-2"]}, @{@"title": @"main1-2", @"subitems":@[@"1-2-1"]}], @[@{@"title":@"main2-1", @"subitems":@[@"2-1-1"]}]];
     }
     return self;
 }
@@ -45,12 +44,12 @@
 
 - (NSInteger)numberOfSections
 {
-    return 2;
+    return [self.dataForTable count];
 }
 
 - (NSArray *)dataForTableView
 {
-    return @[@[@{@"title": @"main1-1", @"subitems":@[@"1-1-1", @"1-1-2"]}, @{@"title": @"main1-2", @"subitems":@[@"1-2-1"]}], @{@"title":@"main2-1", @"subitems":@[@"2-1-1"]}];
+    return self.dataForTable;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView itemCellForIndex:(NSInteger)itemIndex inSection:(NSInteger)sectionIndex
@@ -67,6 +66,16 @@
     cell.contentView.backgroundColor = [UIColor greenColor];
     
     return cell;
+}
+
+- (void)tableView:(id)tableView didSelectItemIndexAtIndex:(NSInteger)index inSection:(NSInteger)section
+{
+    NSLog(@"item = %@", [[[self.dataForTable objectAtIndex:section] objectAtIndex:index] objectForKey:@"title"]);
+}
+
+- (void)tableView:(id)tableView didSelectSubItemAtIndex:(NSInteger)subitemIndex itemIndex:(NSInteger)itemIndex inSection:(NSInteger)section
+{
+    NSLog(@"subitem = %@", [[[[self.dataForTable objectAtIndex:section] objectAtIndex:itemIndex] objectForKey:@"subitems"] objectAtIndex:subitemIndex]);
 }
 
 - (void)didReceiveMemoryWarning
