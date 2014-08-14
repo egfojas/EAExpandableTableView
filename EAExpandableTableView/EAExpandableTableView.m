@@ -56,6 +56,37 @@
     self.tableFooterView = footer;
 }
 
+- (void)expandSubitemsInItemIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *item = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NSArray *subitems = [item valueForKey:@"subitems"];
+    
+    NSUInteger count = indexPath.row+1;
+    NSMutableArray *subItemIndexPathArray = [NSMutableArray array];
+    
+    for (NSDictionary *subitem in subitems ) {
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:count inSection:indexPath.section];
+        [subItemIndexPathArray addObject:newIndexPath];
+        [[self.currentItemsInTable  objectAtIndex:indexPath.section] insertObject:subitem atIndex:count++];
+    }
+    
+    [self insertRowsAtIndexPaths:subItemIndexPathArray withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+-(void)collapseSubitemsInItemIndexPath:(NSIndexPath *)indexPath
+{
+	NSDictionary *item = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NSArray *subitems = [item valueForKey:@"subitems"];
+    
+    for (id subitem in subitems) {
+        NSUInteger indexToRemove = [[self.currentItemsInTable objectAtIndex:indexPath.section] indexOfObjectIdenticalTo:subitem];
+        if ([[self.currentItemsInTable objectAtIndex:indexPath.section] indexOfObjectIdenticalTo:subitem] != NSNotFound) {
+            [[self.currentItemsInTable objectAtIndex:indexPath.section] removeObjectIdenticalTo:subitem];
+			[self deleteRowsAtIndexPaths:[NSArray arrayWithObject: [NSIndexPath indexPathForRow:indexToRemove inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
+}
+
 #pragma mark - Override Setter Method
 
 - (void)setExpandableTableViewDatasource:(id<EAExpandableTableViewDataSource>)expandableTableViewDatasource
