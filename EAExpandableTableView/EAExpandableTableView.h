@@ -23,8 +23,8 @@
 @protocol EAExpandableTableViewDelegate <NSObject>
 
 @optional
-- (void *)tableView:tableView didSelectSubItemAtIndex:(NSInteger)subitemIndex itemIndex:(NSInteger)parentIndex inSection:(NSInteger)section;
-- (void *)tableView:tableView didSelectItemIndexAtIndex:(NSInteger)index inSection:(NSInteger)section;
+- (void)tableView:tableView didSelectSubItemAtIndex:(NSInteger)subitemIndex itemIndex:(NSInteger)parentIndex inSection:(NSInteger)section;
+- (void)tableView:tableView didSelectItemIndexAtIndex:(NSInteger)index inSection:(NSInteger)section;
 
 @end
 
