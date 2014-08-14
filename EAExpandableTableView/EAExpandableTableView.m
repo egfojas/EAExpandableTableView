@@ -26,6 +26,21 @@
     return self;
 }
 
+#pragma mark - Utility Methods
+
+- (NSArray *)itemsForTableSection:(NSInteger)section
+{
+    if ([self.expandableTableViewDatasource dataForTableView]) {
+        id obj = [[self.expandableTableViewDatasource dataForTableView] objectAtIndex:section];
+        if (![obj isKindOfClass:[NSArray class]]) {
+            return @[obj];
+        }
+        return obj;
+    }
+    
+    return [[NSArray alloc] init];
+}
+
 - (void)initializeTableView
 {
     [self setDataSource:self];
