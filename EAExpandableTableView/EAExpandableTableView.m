@@ -56,6 +56,18 @@
     self.tableFooterView = footer;
 }
 
+- (BOOL)isCellAtIndexPathASubItem:(NSIndexPath *)indexPath
+{
+    id item = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    if ([item isKindOfClass:[NSDictionary class]] && [item objectForKey:@"subitems"]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - Expand/Collapse Methods
+
 - (void)expandSubitemsInItemIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *item = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -111,13 +123,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [[self.currentItemsInTable objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    if ([self isCellAtIndexPathASubItem:indexPath]) {
+        id subitem = [[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        do {
+            indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
+        } while ([self isCellAtIndexPathASubItem:indexPath]);
+        NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        NSInteger itemIndex= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
+        NSInteger subItemIndex = [[dic objectForKey:@"subitems"] indexOfObjectIdenticalTo:subitem];
+        //return [self.expandableTableViewDelegate tableView:self subItemCellForIndex:subitemIndex withInParentCellIndex:parentIndex inSection:indexPath.section];
+    }
+    else {
+        NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        NSInteger index= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
+        //return [self.expandableTableViewDelegate tableView:self itemCellForIndex:index inSection:indexPath.section];
+    }
+    
 }
-
 
 @end
