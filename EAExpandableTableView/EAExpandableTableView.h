@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EAExpandableTableView : UITableView
+@interface EAExpandableTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 @end
