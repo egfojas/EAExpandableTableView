@@ -136,12 +136,12 @@
         NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         NSInteger itemIndex= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
         NSInteger subItemIndex = [[dic objectForKey:@"subitems"] indexOfObjectIdenticalTo:subitem];
-        //return [self.expandableTableViewDelegate tableView:self subItemCellForIndex:subitemIndex withInParentCellIndex:parentIndex inSection:indexPath.section];
+        return [self.expandableTableViewDatasource tableView:self subItemCellForIndex:subItemIndex withItemIndex:itemIndex inSection:indexPath.section];
     }
     else {
         NSDictionary *dic=[[self.currentItemsInTable objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         NSInteger index= [[self.originaItemsInTable objectAtIndex:indexPath.section ] indexOfObjectIdenticalTo:dic];
-        //return [self.expandableTableViewDelegate tableView:self itemCellForIndex:index inSection:indexPath.section];
+        return [self.expandableTableViewDatasource tableView:self itemCellForIndex:index inSection:indexPath.section];
     }
     
 }

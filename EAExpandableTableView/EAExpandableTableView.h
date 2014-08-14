@@ -12,6 +12,10 @@
 
 @required
 - (NSArray *)dataForTableView;
+- (UITableViewCell *)tableView:(UITableView *)tableView subItemCellForIndex:(NSInteger)subItemIndex withItemIndex:(NSInteger)itemIndex inSection:(NSInteger)sectionIndex;
+- (UITableViewCell *)tableView:(UITableView *)tableView itemCellForIndex:(NSInteger)itemIndex inSection:(NSInteger)sectionIndex;
+
+
 
 @optional
 - (NSInteger)numberOfSections;
