@@ -28,6 +28,14 @@
     self.tableFooterView = footer;
 }
 
+#pragma mark - Override Setter Method
+
+- (void)setExpandableTableViewDatasource:(id<EAExpandableTableViewDataSource>)expandableTableViewDatasource
+{
+    _expandableTableViewDatasource = expandableTableViewDatasource;
+    [self initializeTableView];
+}
+
 #pragma mark - UITableView Delegate Methods
 
 
