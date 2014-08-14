@@ -67,13 +67,6 @@
     return cell;
 }
 
-- (void)loadView
-{
-    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-    self.view.backgroundColor = [UIColor grayColor];
-
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

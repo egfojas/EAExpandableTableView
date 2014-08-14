@@ -7,6 +7,7 @@
 //
 
 #import "EAAppDelegate.h"
+#import "EADemoViewController.h"
 
 @implementation EAAppDelegate
 
@@ -16,6 +17,10 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    EADemoViewController *homeViewController = [[EADemoViewController alloc] init];
+    self.window.rootViewController = homeViewController;
+    
     return YES;
 }
 
